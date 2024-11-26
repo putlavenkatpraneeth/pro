@@ -61,7 +61,7 @@
           class="input-field"
           placeholder="New Password"
           required
-        />
+        /><br>
 
         <label for="confirm-password">Confirm Password:</label>
         <input
@@ -101,12 +101,7 @@
               "The passwords do not match. Please try again.";
             return;
           }
-        //  else{  errorElement.textContent =
-        //       "success";
-        //     return;}
-
-
-          // Check password strength (optional)
+     
           if (newPassword.length < 6) {
             errorElement.textContent =
               "Password must be at least 6 characters long.";
@@ -114,21 +109,11 @@
           }
           if (newPassword == confirmPassword) {
             errorElement.textContent =
-              "The password is success";
+              "The password Entered is Successful ";
             return;
           }
           
 
-
-
-          // Simulate the password reset process (In real case, you would send it to the backend)
-        //   setTimeout(function () {
-        //     messageElement.textContent =
-        //       "Your password has been successfully changed!";
-        //     messageElement.style.display = "block";
-        //     newPasswordField.value = ""; // Clear the new password field
-        //     confirmPasswordField.value = ""; // Clear the confirm password field
-        //   }, 1000);
         });
     </script>
   </body>
