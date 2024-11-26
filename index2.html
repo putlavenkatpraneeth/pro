@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create New Password</title>
+    <style>
+      /* body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .message {
+            color: green;
+            display: none;
+            margin-top: 10px;
+        }
+        .error {
+            color: red;
+        } */
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Create New Password</h2>
+      <form id="create-password-form">
+        <label for="new-password">New Password:</label>
+        <input
+          type="password"
+          id="new-password"
+          class="input-field"
+          placeholder="New Password"
+          required
+        />
+
+        <label for="confirm-password">Confirm Password:</label>
+        <input
+          type="password"
+          id="confirm-password"
+          class="input-field"
+          placeholder="Confirm Password"
+          required
+        />
+
+        <button type="submit" class="button">Submit</button>
+      </form>
+      <p id="message" class="message"></p>
+      <p id="error-message" class="error"></p>
+    </div>
+
+    <script>
+      // JavaScript to handle the form submission and password verification
+      document .getElementById("create-password-form")
+      .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          const newPasswordField = document.getElementById("new-password");
+          const confirmPasswordField =  document.getElementById("confirm-password");
+          const newPassword = newPasswordField.value;
+          const confirmPassword = confirmPasswordField.value;
+          const messageElement = document.getElementById("message");
+          const errorElement = document.getElementById("error-message");
+
+          // Clear previous messages
+        //   messageElement.style.display = "none";
+          errorElement.textContent = "";
+
+          // Check if the passwords match
+          if (newPassword !== confirmPassword) {
+            errorElement.textContent =
+              "The passwords do not match. Please try again.";
+            return;
+          }
+        //  else{  errorElement.textContent =
+        //       "success";
+        //     return;}
+
+
+          // Check password strength (optional)
+          if (newPassword.length < 6) {
+            errorElement.textContent =
+              "Password must be at least 6 characters long.";
+            return;
+          }
+          if (newPassword == confirmPassword) {
+            errorElement.textContent =
+              "The password is success";
+            return;
+          }
+          
+
+
+
+          // Simulate the password reset process (In real case, you would send it to the backend)
+        //   setTimeout(function () {
+        //     messageElement.textContent =
+        //       "Your password has been successfully changed!";
+        //     messageElement.style.display = "block";
+        //     newPasswordField.value = ""; // Clear the new password field
+        //     confirmPasswordField.value = ""; // Clear the confirm password field
+        //   }, 1000);
+        });
+    </script>
+  </body>
+</html>
