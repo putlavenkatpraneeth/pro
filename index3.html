@@ -1,1 +1,129 @@
 
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OTP Generation and Verification</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+      .container {
+        text-align: center;
+        border: 2px solid #ccc;
+        padding: 20px;
+        border-radius: 10px;
+        width: 300px;
+      }
+      input {
+        padding: 10px;
+        margin: 10px 0;
+        width: 80%;
+        font-size: 16px;
+      }
+      .btn {
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        background-color: #4caf50;
+        color: white;
+        border-radius: 5px;
+      }
+      .btn:hover {
+        background-color: #45a049;
+      }
+      .error {
+        color: red;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h3>Generate and Verify OTP</h3>
+
+      <!-- Mobile Number Input and Generate OTP Button -->
+      <input
+        type="text"
+        id="mobileNumber"
+        placeholder="Enter Mobile Number"
+        maxlength="10"
+      />
+      <button class="btn" onclick="generateOTP()">Generate OTP</button>
+      <div class="error" id="mobile-error"></div>
+
+      <!-- OTP Input and Verify Button -->
+      <div id="otp-section" style="display: none">
+        <input
+          type="text"
+          id="otpInput"
+          placeholder="Enter OTP"
+          maxlength="6"
+        />
+        <button class="btn" onclick="verifyOTP()">Verify OTP</button>
+        <div class="error" id="otp-error"></div>
+      </div>
+
+    
+
+    <script>
+      let generatedOTP = ""; // Variable to store the generated OTP
+
+      // Function to generate OTP
+      function generateOTP() {
+        let mobileNumber = document.getElementById("mobileNumber").value;
+        let mobileError = document.getElementById("mobile-error");
+
+        // Clear any previous error messages
+        mobileError.textContent = "";
+
+        // Validate mobile number
+        if (mobileNumber.length !== 10 || isNaN(mobileNumber)) {
+          mobileError.textContent = "Please enter a valid 10-digit mobile number.";
+          return;
+        }
+
+        // Generate a 6-digit OTP
+        generatedOTP = "";
+        const characters = "0123456789";
+        for (let i = 0; i < 6; i++) {
+          generatedOTP += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+
+        // Display the OTP in the console (for demo purposes)
+        console.log("Generated OTP: ", generatedOTP);
+
+        // Show the OTP verification section and hide the mobile input
+        document.getElementById("otp-section").style.display = "block";
+      }
+
+      // Function to verify OTP
+      function verifyOTP() {
+        let enteredOTP = document.getElementById("otpInput").value;
+        let otpError = document.getElementById("otp-error");
+
+        // Clear any previous error messages
+        otpError.textContent = "";
+
+        // Verify if the entered OTP matches the generated OTP
+        if (enteredOTP === generatedOTP) {
+          console.log("OTP verification successful!");
+          otpError.textContent = "OTP verified successfully!";
+          otpError.style.color = "green";
+        } else {
+          console.log("Invalid OTP.");
+          otpError.textContent = "Invalid OTP, please try again.";
+          otpError.style.color = "red";
+        }
+      }
+
+    </script>
+  </body>
+</html>
